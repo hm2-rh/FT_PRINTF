@@ -14,10 +14,10 @@
 
 char	*ft_putptr(void *ptr)
 {
-	unsigned long	p;
-	char *s;
+	char	*p;
+	char	*s;
 
-	p = (unsigned long)ptr;
-	s = ft_strjoin("0x", ft_puthex_lower(p));
+	p = (char *)ptr;
+	s = ft_strjoin("0x", ft_puthex_lower((int)p));
 	return (s);
 }

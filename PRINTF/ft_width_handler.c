@@ -14,13 +14,12 @@
 
 static	int	ft_arg_len(const char *c, void *val)
 {
-	int len;
-
-	len = 0;
 	if (*c == 'c')
 		return (1);
 	else if (*c == 's')
+	{
 		return (ft_strlen((char *)val));
+	}
 	else if (*c == 'd' || *c == 'i')
 		return (ft_strlen(ft_itoa((int)val)));
 	else if (*c == 'x')
@@ -40,6 +39,7 @@ void		ft_width_handler(const char *c, void *val, int *count, int *i)
 	int		ref;
 
 	prec = ft_atoi(c);
+
 	while (ft_isdigit(*c))
 	{
 		*i += 1;

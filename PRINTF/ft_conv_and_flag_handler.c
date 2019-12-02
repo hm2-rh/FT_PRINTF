@@ -33,7 +33,9 @@ void		ft_conv_and_flag_handler(const char *c, va_list arg, int *count,
 	void *val;
 
 	val = va_arg(arg, void *);
-	if (ft_isdigit(*c))
+	if (ft_isflag(*c))
+		ft_flag_handler(c, val, count, i);
+	if (ft_isdigit(*c) && *c != '0')
 		ft_width_handler(c, val, count, i);
 	else if (ft_isconv(*c))
 		ft_conv_handler(c, val, count, i);

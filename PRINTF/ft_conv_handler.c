@@ -47,8 +47,16 @@ void			ft_conv_handler(const char *c, void *val, int *count, int *i)
 	}
 	else if (*c == 's')
 	{
-		*count += ft_strlen((char *)val);
-		ft_putstr((char *)val);
+		if (!val)
+		{
+			*count += 6;
+			ft_putstr("(null)");
+		}
+		else
+		{
+			*count += ft_strlen((char *)val);
+			ft_putstr((char *)val);
+		}
 	}
 	else if (*c == 'd' || *c == 'i')
 	{

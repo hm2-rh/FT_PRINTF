@@ -37,8 +37,6 @@ char		*ft_puthex_upper(int nbr)
 	i = ft_malloc_len(u_nbr);
 	str = malloc(i + 1);
 	str[i] = '\0';
-	if (u_nbr < 16)
-		str[i--] = digits[u_nbr % 16];
 	while (i-- >= 0 && u_nbr != 0)
 	{
 		str[i] = digits[u_nbr % 16];

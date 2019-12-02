@@ -28,6 +28,6 @@ void	ft_conv_and_flag_handler(const char *c, va_list arg,
 		int *count, int *i);
 void	ft_conv_handler(const char *c, void *val, int *count, int *i);
 void	ft_width_handler(const char *c, void *val, int *count, int *i);
-//void	ft_flag_handler(const char *c, va_list arg, int *count, int *i);
+void	ft_flag_handler(const char *c, void *val, int *count, int *i);
 
 #endif
