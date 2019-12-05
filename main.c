@@ -21,15 +21,12 @@
 
 int		main()
 {
-	t_flag *flag;
-
-	flag = malloc(sizeof(t_flag));
-	char *s = "test";
-	int d = 42;
-	int i = printf("___printf: |%c| |%.3s| |%.*x|", 'a', s, 7, d);
-	printf("\n");
-	int ii = ft_printf("ft_printf: |%c| |%.3s| |%.*x|", 'a', s, 7, d);
-	printf("\n");
-	printf("printf: %d\nft_printf: %d\n", i, ii);
-	//printf("%s|\n", s);
+//	char *s = "tests";
+//	int d = -42;
+//	int i = printf("___printf: |%c| |%.3s| |%0.0d|", 'a', s, d);
+//	printf("\n");
+//	int ii = ft_printf("ft_printf: |%c| |%.3s| |%0.0d|", 'a', s, d);
+//	printf("\n");
+//	printf("printf: %d\nft_printf: %d\n", i, ii);
+	ft_printf("%%|\n");
 }

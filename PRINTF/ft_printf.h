@@ -6,7 +6,7 @@
 /*   By: hrhirha <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 14:15:53 by hrhirha           #+#    #+#             */
-/*   Updated: 2019/12/05 13:17:53 by hrhirha          ###   ########.fr       */
+/*   Updated: 2019/12/05 23:23:02 by hrhirha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char			*ft_puthex_lower(int nbr);
 char			*ft_puthex_upper(int nbr);
 char			*ft_putunsigned(int nbr);
 char			*ft_putptr(void *ptr);
-char			*ft_strncpy(char *dest, const char *src, size_t n);
+char			*ft_strncpy(char *dest, const char *src, int n);
 void			ft_conv_and_flag_handler(const char *c, va_list arg,
 				int *count, int *i);
 char			*ft_conv_handler(const char *c, void *val);
