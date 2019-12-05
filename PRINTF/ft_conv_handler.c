@@ -6,64 +6,34 @@
 /*   By: hrhirha <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 14:17:20 by hrhirha           #+#    #+#             */
-/*   Updated: 2019/12/01 16:42:16 by hrhirha          ###   ########.fr       */
+/*   Updated: 2019/12/05 13:17:25 by hrhirha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static	void	ft_conv_handler_ext(const char *c, int *count, void *val)
+char	*ft_conv_handler(const char *c, void *val)
 {
-	if (*c == 'x')
-	{
-		*count += ft_strlen(ft_puthex_lower((int)val));
-		ft_putstr(ft_puthex_lower((int)val));
-	}
-	else if (*c == 'X')
-	{
-		*count += ft_strlen(ft_puthex_upper((int)val));
-		ft_putstr(ft_puthex_upper((int)val));
-	}
-	else if (*c == 'u')
-	{
-		*count += ft_strlen(ft_putunsigned((int)val));
-		ft_putstr(ft_putunsigned((int)val));
-	}
-	else if (*c == 'p')
-	{
-		*count += ft_strlen(ft_putptr(val));
-		ft_putstr(ft_putptr(val));
-	}
-}
+	char *str;
 
-void			ft_conv_handler(const char *c, void *val, int *count, int *i)
-{
-	char *s;
-
+	str = ft_calloc(1, 1);
 	if (*c == 'c')
-	{
-		ft_putchar((char)val);
-		*count += 1;
-	}
+		*str = (char)val;
 	else if (*c == 's')
 	{
-		if (!val)
-		{
-			*count += 6;
-			ft_putstr("(null)");
-		}
-		else
-		{
-			*count += ft_strlen((char *)val);
-			ft_putstr((char *)val);
-		}
+		str = (char *)val;
+		if (str == NULL)
+			str = "(null)";
 	}
 	else if (*c == 'd' || *c == 'i')
-	{
-		s = ft_itoa((int)val);
-		*count += ft_strlen(s);
-		ft_putstr(s);
-	}
-	ft_conv_handler_ext(c, count, val);
-	*i += 1;
+		str = ft_itoa((int)val);
+	else if (*c == 'x')
+		str = ft_puthex_lower((int)val);
+	else if (*c == 'X')
+		str = ft_puthex_upper((int)val);
+	else if (*c == 'u')
+		str = ft_putunsigned((int)val);
+	else if (*c == 'p')
+		str = ft_putptr(val);
+	return (str);
 }

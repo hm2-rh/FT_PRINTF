@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrhirha <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/01 14:15:08 by hrhirha           #+#    #+#             */
-/*   Updated: 2019/12/05 13:17:49 by hrhirha          ###   ########.fr       */
+/*   Created: 2019/12/05 12:29:56 by hrhirha           #+#    #+#             */
+/*   Updated: 2019/12/05 13:04:16 by hrhirha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int		ft_printf(const char *format, ...)
+char	*ft_strncpy(char *dest, const char *src, int n)
 {
-	va_list arg;
-	int		i;
-	int		count;
+	int j;
 
-	va_start(arg, format);
-	i = 0;
-	count = 0;
-	while (format[i])
+	j = 0;
+	while (j < n && src[j])
 	{
-		if (format[i] == '%' && format[++i] != '%')
-			ft_conv_and_flag_handler(&format[i], arg, &count, &i);
-		else if (format[i])
-		{
-			ft_putchar(format[i++]);
-			count++;
-		}
+		dest[j] = src[j];
+		j++;
 	}
-	va_end(arg);
-	return (count);
+	while (j < n)
+	{
+		dest[j] = '\0';
+		j++;
+	}
+	return (dest);
 }
