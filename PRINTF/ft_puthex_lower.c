@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static	int	ft_malloc_len(unsigned int u_nbr)
+static	int	ft_malloc_len(unsigned long u_nbr)
 {
 	int ret;
 
@@ -25,14 +25,12 @@ static	int	ft_malloc_len(unsigned int u_nbr)
 	return (ret);
 }
 
-char		*ft_puthex_lower(int nbr)
+char		*ft_puthex_lower(unsigned long u_nbr)
 {
-	unsigned int	u_nbr;
 	char			*digits;
 	char			*str;
 	int				i;
 
-	u_nbr = (unsigned int)nbr;
 	digits = "0123456789abcdef";
 	i = ft_malloc_len(u_nbr);
 	if (!(str = malloc(i + 1)))

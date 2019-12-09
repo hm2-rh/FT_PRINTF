@@ -12,12 +12,10 @@
 
 #include "ft_printf.h"
 
-char	*ft_putptr(void *ptr)
+char	*ft_putptr(void * ui)
 {
-	char	*p;
-	char	*s;
+	char *s;
 
-	p = (char *)ptr;
-	s = ft_strjoin("0x", ft_puthex_lower((int)p));
+	s = ft_strjoin("0x", ft_puthex_lower((unsigned long)ui));
 	return (s);
 }

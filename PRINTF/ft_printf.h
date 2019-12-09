@@ -1,42 +1,48 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hrhirha <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/01 14:15:53 by hrhirha           #+#    #+#             */
-/*   Updated: 2019/12/05 23:23:02 by hrhirha          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <unistd.h>
-# include <stdarg.h>
+#ifndef PRINTF_H
+# define PRINTF_H
 # include "libft/libft.h"
+# include <stdarg.h>
 
-typedef	struct	s_flag
+typedef	struct	s_form
 {
+	char		*copy;
+	va_list		args;
+	size_t		count;
+	int			pos;
+	int			precision;
 	int			width;
-	int			zero;
-	int			minus;
-	int			dot;
-	char		*str;
-}				t_flag;
+	char		*flags;
+	char		*convs;
+	char		flag[2];
+	char		conv;
+}				t_form;
 
 int				ft_printf(const char *format, ...);
+
 void			ft_putchar(int c);
 void			ft_putstr(char *s);
 void			ft_putnbr(int nbr);
-char			*ft_puthex_lower(int nbr);
-char			*ft_puthex_upper(int nbr);
+char			*ft_puthex_lower(unsigned long u_nbr);
+char			*ft_puthex_upper(unsigned long u_nbr);
 char			*ft_putunsigned(int nbr);
-char			*ft_putptr(void *ptr);
+char			*ft_putptr(void * ui);
 char			*ft_strncpy(char *dest, const char *src, int n);
-void			ft_conv_and_flag_handler(const char *c, va_list arg,
-				int *count, int *i);
-char			*ft_conv_handler(const char *c, void *val);
-char			*ft_flag_handler(const char *c, void *val, int *i);
+
+void			ft_init(t_form *form);
+
+int				ft_handler(t_form *form);
+void			ft_handle_flags(t_form *form);
+void			ft_handle_width(t_form *form);
+void			ft_handle_precision(t_form *form);
+void			ft_handle_conv(t_form *form);
+
+void			ft_display_results(t_form *form);
+void			ft_display_c(t_form *form);
+//void			ft_display_s(t_form *form);
+void			ft_display_d(t_form *form);
+//void			ft_display_u(t_form *form);
+//void			ft_display_x(t_form *form);
+//void			ft_display_X(t_form *form);
+//void			ft_display_p(t_form *form);
 
 #endif

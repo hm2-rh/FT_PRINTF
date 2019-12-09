@@ -17,6 +17,8 @@ void	ft_putstr(char *s)
 	int i;
 
 	i = 0;
+	if (s == NULL)
+		ft_putchar(0);
 	while (s[i])
 	{
 		ft_putchar(s[i]);

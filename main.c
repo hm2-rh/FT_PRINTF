@@ -21,12 +21,13 @@
 
 int		main()
 {
-//	char *s = "tests";
-//	int d = -42;
+	//char *s = "tests";
+	int d = 42;
 //	int i = printf("___printf: |%c| |%.3s| |%0.0d|", 'a', s, d);
 //	printf("\n");
 //	int ii = ft_printf("ft_printf: |%c| |%.3s| |%0.0d|", 'a', s, d);
 //	printf("\n");
 //	printf("printf: %d\nft_printf: %d\n", i, ii);
-	ft_printf("%%|\n");
+	printf("%s\n%p\n", ft_putptr(&d), &d);
+	printf("%s\n", ft_puthex_lower(d));
 }

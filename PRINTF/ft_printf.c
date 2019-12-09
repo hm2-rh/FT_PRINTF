@@ -1,36 +1,18 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hrhirha <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/01 14:15:08 by hrhirha           #+#    #+#             */
-/*   Updated: 2019/12/05 23:22:59 by hrhirha          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
 int		ft_printf(const char *format, ...)
 {
-	va_list arg;
-	int		i;
-	int		count;
+	t_form *form;
 
-	va_start(arg, format);
-	i = 0;
-	count = 0;
-	while (format[i])
+	form = malloc(sizeof(t_form));
+	form->copy = (char *)format;
+	ft_init(form);
+	if (format)
 	{
-		if (format[i] == '%' && format[++i] != '%')
-			ft_conv_and_flag_handler(&format[i], arg, &count, &i);
-		else if (format[i])
-		{
-			ft_putchar(format[i++]);
-			count++;
-		}
+		va_start(form->args, format);
+		form->count = ft_handler(form);
+		va_end(form->args);
 	}
-	va_end(arg);
-	return (count);
+	free(form);
+	return (form->count);
 }
