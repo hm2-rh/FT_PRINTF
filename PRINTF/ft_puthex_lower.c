@@ -6,13 +6,13 @@
 /*   By: hrhirha <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 14:18:20 by hrhirha           #+#    #+#             */
-/*   Updated: 2019/12/01 16:22:51 by hrhirha          ###   ########.fr       */
+/*   Updated: 2019/12/10 11:17:47 by hrhirha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static	int	ft_malloc_len(unsigned long u_nbr)
+static	int	ft_malloc_len(unsigned u_nbr)
 {
 	int ret;
 
@@ -25,7 +25,7 @@ static	int	ft_malloc_len(unsigned long u_nbr)
 	return (ret);
 }
 
-char		*ft_puthex_lower(unsigned long u_nbr)
+char		*ft_puthex_lower(unsigned u_nbr)
 {
 	char			*digits;
 	char			*str;

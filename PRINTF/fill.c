@@ -1,44 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthex_upper.c                                  :+:      :+:    :+:   */
+/*   fill.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrhirha <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/01 14:18:28 by hrhirha           #+#    #+#             */
-/*   Updated: 2019/12/10 11:18:27 by hrhirha          ###   ########.fr       */
+/*   Created: 2019/12/10 10:59:26 by hrhirha           #+#    #+#             */
+/*   Updated: 2019/12/10 14:22:12 by hrhirha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static	int	ft_malloc_len(unsigned u_nbr)
+char	*fill(int *gap, int width, int c)
 {
-	int ret;
+	int		len;
+	int		index;
+	char	*s;
 
-	ret = 0;
-	while (u_nbr != 0)
+	index = 0;
+	len = width - *gap;
+	if (len < 0)
+		len = 0;
+	s = malloc(len + 1);
+	while (index < len)
 	{
-		u_nbr /= 16;
-		ret++;
+		s[index++] = c;
+		*gap += 1;
 	}
-	return (ret);
-}
-
-char		*ft_puthex_upper(unsigned u_nbr)
-{
-	char			*digits;
-	char			*str;
-	int				i;
-
-	digits = "0123456789ABCDEF";
-	i = ft_malloc_len(u_nbr);
-	str = malloc(i + 1);
-	str[i] = '\0';
-	while (i-- >= 0 && u_nbr != 0)
-	{
-		str[i] = digits[u_nbr % 16];
-		u_nbr /= 16;
-	}
-	return (str);
+	s[index] = '\0';
+	return (s);
 }

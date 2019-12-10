@@ -1,44 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthex_upper.c                                  :+:      :+:    :+:   */
+/*   ft_display_percent.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrhirha <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/01 14:18:28 by hrhirha           #+#    #+#             */
-/*   Updated: 2019/12/10 11:18:27 by hrhirha          ###   ########.fr       */
+/*   Created: 2019/12/10 15:59:28 by hrhirha           #+#    #+#             */
+/*   Updated: 2019/12/10 16:09:49 by hrhirha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static	int	ft_malloc_len(unsigned u_nbr)
+void			ft_display_percent(t_form *form)
 {
-	int ret;
+	char	*s;
+	int		gap;
 
-	ret = 0;
-	while (u_nbr != 0)
-	{
-		u_nbr /= 16;
-		ret++;
-	}
-	return (ret);
-}
-
-char		*ft_puthex_upper(unsigned u_nbr)
-{
-	char			*digits;
-	char			*str;
-	int				i;
-
-	digits = "0123456789ABCDEF";
-	i = ft_malloc_len(u_nbr);
-	str = malloc(i + 1);
-	str[i] = '\0';
-	while (i-- >= 0 && u_nbr != 0)
-	{
-		str[i] = digits[u_nbr % 16];
-		u_nbr /= 16;
-	}
-	return (str);
+	s = "%";
+	gap = 1;
+	if (form->flag[0] == '-' && form->width > gap)
+		s = ft_strjoin(s, fill(&gap, form->width, ' '));
+	else if (form->flag[1] == '0' && form->width > gap)
+		s = ft_strjoin(fill(&gap, form->width, '0'), s);
+	else if (form->flag[0] != '-' && form->width > gap)
+		s = ft_strjoin(fill(&gap, form->width, ' '), s);
+	form->count += ft_strlen(s);
+	ft_putstr(s);
 }
