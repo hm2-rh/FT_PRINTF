@@ -6,11 +6,23 @@
 /*   By: hrhirha <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 09:19:23 by hrhirha           #+#    #+#             */
-/*   Updated: 2019/12/10 15:54:16 by hrhirha          ###   ########.fr       */
+/*   Updated: 2019/12/11 12:55:09 by hrhirha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static	void	neg_d_with_zero(t_form *form, int *i, int *gap, char **s)
+{
+	char *tmp;
+
+	*i *= -1;
+	*s = ft_strjoin(fill(gap, form->width, '0'), *s + 1);
+	tmp = *s;
+	*s = ft_strjoin("-", *s);
+	free(tmp);
+	tmp = NULL;
+}
 
 void			ft_display_d(t_form *form)
 {
@@ -19,7 +31,6 @@ void			ft_display_d(t_form *form)
 	char	*tmp;
 	int		gap;
 
-	tmp = NULL;
 	i = va_arg(form->args, int);
 	s = ft_itoa(i);
 	gap = ft_strlen(s);
@@ -28,7 +39,12 @@ void			ft_display_d(t_form *form)
 	if (form->flag[0] == '-' && form->width > 0)
 		s = ft_strjoin(s, fill(&gap, form->width, ' '));
 	else if (form->flag[1] == '0' && form->width > gap && form->precision < 0)
-		s = ft_strjoin(fill(&gap, form->width, '0'), s);
+	{
+		if (i < 0)
+			neg_d_with_zero(form, &i, &gap, &s);
+		else
+			s = ft_strjoin(fill(&gap, form->width, '0'), s);
+	}
 	else if (form->width > 0 && form->flag[0] != '-')
 		s = ft_strjoin(fill(&gap, form->width, ' '), s);
 	free(tmp);

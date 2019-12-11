@@ -6,7 +6,7 @@
 /*   By: hrhirha <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 14:03:36 by hrhirha           #+#    #+#             */
-/*   Updated: 2019/12/10 15:57:58 by hrhirha          ###   ########.fr       */
+/*   Updated: 2019/12/11 13:58:00 by hrhirha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void			ft_display_s(t_form *form)
 	s = va_arg(form->args, char *);
 	if (s == NULL)
 		s = "(null)";
-	gap = ft_strlen(s);
 	if (form->precision == 0)
 		s = "";
+	gap = ft_strlen(s);
 	if (form->precision < gap && form->precision > 0)
 	{
 		s = ft_substr(s, 0, form->precision);

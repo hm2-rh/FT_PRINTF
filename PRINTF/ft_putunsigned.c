@@ -6,7 +6,7 @@
 /*   By: hrhirha <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 14:20:04 by hrhirha           #+#    #+#             */
-/*   Updated: 2019/12/10 09:26:15 by hrhirha          ###   ########.fr       */
+/*   Updated: 2019/12/11 14:22:11 by hrhirha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ char		*ft_putunsigned(int nbr)
 	if (!(str = malloc(i + 1)))
 		return (NULL);
 	str[i] = '\0';
-	if (u_nbr < 10)
-		str[i--] = (u_nbr % 10) + 48;
+	if (u_nbr == 0)
+		str[i--] = '0';
 	while (i-- >= 0 && u_nbr != 0)
 	{
 		str[i] = (u_nbr % 10) + 48;

@@ -6,7 +6,7 @@
 /*   By: hrhirha <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 09:22:03 by hrhirha           #+#    #+#             */
-/*   Updated: 2019/12/10 15:55:02 by hrhirha          ###   ########.fr       */
+/*   Updated: 2019/12/11 12:55:13 by hrhirha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,20 @@ static	void	ft_treatement(t_form *form)
 	ft_display_results(form);
 }
 
+void	ft_reinit(t_form *form)
+{
+	form->flag[0] = '\0';
+	form->flag[1] = '\0';
+	form->conv = '\0';
+	form->precision = -1;
+	form->width = 0;
+}
+
 int				ft_handler(t_form *form)
 {
 	while (form->copy[form->pos])
 	{
+		ft_reinit(form);
 		if (form->copy[form->pos] == '%')
 		{
 			form->pos++;
