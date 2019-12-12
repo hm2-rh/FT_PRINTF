@@ -12,6 +12,15 @@
 
 #include "ft_printf.h"
 
+static	void	neg_width(t_form *form)
+{
+	if (form->width < 0)
+	{
+		form->flag[0] = '-';
+		form->width *= -1;
+	}
+}
+
 void			ft_display_u(t_form *form)
 {
 	int		i;
@@ -22,21 +31,22 @@ void			ft_display_u(t_form *form)
 	tmp = NULL;
 	i = va_arg(form->args, int);
 	s = ft_putunsigned(i);
+	if (i == 0)
+	{
+		tmp = s;
+		s = ft_strdup("0");
+		free(tmp);
+	}
 	gap = ft_strlen(s);
 	ft_display_prec(form, &i, &gap, &s);
-	tmp = s;
-	if (form->width < 0)
-	{
-		form->flag[0] = '-';
-		form->width *= -1;
-	}
+	neg_width(form);
 	if (form->flag[0] == '-' && form->width > 0)
 		s = ft_strjoin(s, fill(&gap, form->width, ' '));
 	else if (form->flag[1] == '0' && form->width > gap && form->precision < 0)
 		s = ft_strjoin(fill(&gap, form->width, '0'), s);
-	if (form->width > 0 && form->flag[0] != '-')
+	else if (form->width > 0 && form->flag[0] != '-')
 		s = ft_strjoin(fill(&gap, form->width, ' '), s);
-	free(tmp);
 	form->count += ft_strlen(s);
 	ft_putstr(s);
+	free(s);
 }

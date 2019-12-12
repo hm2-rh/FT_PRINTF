@@ -47,7 +47,7 @@ void			ft_display_d(t_form *form)
 	}
 	else if (form->width > 0 && form->flag[0] != '-')
 		s = ft_strjoin(fill(&gap, form->width, ' '), s);
-	free(tmp);
 	form->count += ft_strlen(s);
 	ft_putstr(s);
+	free(s);
 }
