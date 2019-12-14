@@ -2,30 +2,13 @@
 #include <stdlib.h>
 #include "PRINTF/ft_printf.h"
 
-/*char	*ft(t_flag *flag)
-{
-	char	*pad;
-	int		num;
-	int		i;
-
-	i = 0;
-	num = flag->width - (int)ft_strlen(flag->str);
-	pad = malloc(num);
-	while (i < num)
-	{
-		pad[i] = '0';
-		i++;
-	}
-	return (pad);
-}*/
-
 int		main()
 {
-	//char *s = "tests";
-	//int d = 42;
-	int i = printf("TEST%-15.8d",0);
+	char *s = "howdy";
+	int d = 42;
+	int i = printf("___printf: |%3c| |%-9.3s| |%015.5d| |%-4%| |%20p| |%016.13u| |%X|", 's', s, d, s, d, d);
 	printf("\n");
-	int ii = ft_printf("TEST%-15.8d",0);
+	int ii = ft_printf("ft_printf: |%3c| |%-9.3s| |%015.5d| |%-4%| |%20p| |%016.13u| |%X|", 's', s, d, s, d, d);
 	printf("\n");
-	printf("printf: %d\nft_printf: %d\n", i, ii);
+	printf("___printf: %d\nft_printf: %d\n", i, ii);
 }
