@@ -4,11 +4,11 @@
 
 int		main()
 {
-	char *s = "howdy";
-	int d = 42;
-	int i = printf("___printf: |%3c| |%-9.3s| |%015.5d| |%-4%| |%20p| |%016.13u| |%X|", 's', s, d, s, d, d);
+	//char *s = "howdy";
+	//int d = 0;
+	int i = printf("___printf: |%.p|", NULL);
 	printf("\n");
-	int ii = ft_printf("ft_printf: |%3c| |%-9.3s| |%015.5d| |%-4%| |%20p| |%016.13u| |%X|", 's', s, d, s, d, d);
+	int ii = ft_printf("ft_printf: |%.p|", NULL);
 	printf("\n");
 	printf("___printf: %d\nft_printf: %d\n", i, ii);
 }

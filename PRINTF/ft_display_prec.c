@@ -44,9 +44,17 @@ static	void	check_neg_num(t_form *form, int *i, char **s)
 	tmp = NULL;
 	if (*i < 0 && (form->conv == 'd' || form->conv == 'i'))
 	{
-		ft_neg(form, i);
-		free(*s);
-		*s = ft_itoa(*i);
+		if (*i == -2147483648)
+		{
+			*s = ft_strdup("2147483648");
+			form->width--;
+		}
+		else
+		{
+			ft_neg(form, i);
+			free(*s);
+			*s = ft_itoa(*i);
+		}
 	}
 }
 

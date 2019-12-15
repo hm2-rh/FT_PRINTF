@@ -45,7 +45,10 @@ void			ft_display_p(t_form *form)
 	int		gap;
 
 	ptr = va_arg(form->args, void *);
-	s = ft_putptr(ptr);
+	if (!ptr && form->precision == 0)
+		s = ft_strdup("0x");
+	else
+		s = ft_putptr(ptr);
 	gap = ft_strlen(s);
 	if (form->flag[0] == '-' && form->width > 0)
 	{
